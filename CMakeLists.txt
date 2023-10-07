@@ -4,6 +4,8 @@ set(QUICKJS_PATH ./src/jsruntime/deps/quickjs)
 set(LIBUV_PATH ./src/deps/libuv)
 set(LV_CONF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/deps/lv_conf.h CACHE INTERNAL "LV_CONF_PATH")
 
+add_compile_options(-ffunction-sections -fdata-sections)
+
 if (${CMAKE_BUILD_TYPE} MATCHES Debug)
     set(CMAKE_CXX_FLAGS "-O0 -Wall -g -ggdb -std=c++11")
     set(CMAKE_C_FLAGS "-O0 -Wall -g -ggdb -std=gnu99")
@@ -87,3 +89,6 @@ elseif (${CMAKE_BUILD_PLATFORM} MATCHES arm)
         lv_drivers
     )
 endif()
+
+target_link_options(lvgljs PRIVATE -Wl,--gc-sections)
+

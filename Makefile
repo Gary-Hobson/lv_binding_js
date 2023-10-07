@@ -9,7 +9,7 @@ dev-x86:
 		-DCMAKE_BUILD_PLATFORM=x86 \
 		-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@3 \
 		-DOPENSSL_LIBRARIES=/usr/local/opt/openssl@3/lib
-	cmake --build $(DEV_X86)
+	cmake --build $(DEV_X86) -j
 
 dev-arm:
 	@mkdir -p $(DEV_ARM)
