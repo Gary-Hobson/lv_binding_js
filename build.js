@@ -14,10 +14,13 @@ require('esbuild').build({
     bundle: true,
     platform: 'neutral',
     external: ['path', 'fs'],
-    outfile: path.resolve(path.dirname(entry), 'output.js'), // 输出到同一目录，命名为output.js
+    outfile: path.resolve(path.dirname(entry), 'index.js'), // 输出到同一目录，命名为 index.js
     plugins: [
       alias({
         'lvgljs-ui': path.resolve(__dirname, './src/render/react/index.js'),
       }),
     ],
+    treeShaking: true,  // 确保 tree shaking 是启用的，去除未使用的代码
+    // minify: true,  // 压缩和优化输出的代码
+    target: 'es6'  // 确保输出是 ES6 语法
 }).catch(() => process.exit(1))

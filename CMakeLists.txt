@@ -4,6 +4,8 @@ set(QUICKJS_PATH ./src/jsruntime/deps/quickjs)
 set(LIBUV_PATH ./src/deps/libuv)
 set(LV_CONF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/deps/lv_conf.h CACHE INTERNAL "LV_CONF_PATH")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 add_compile_options(-ffunction-sections -fdata-sections)
 
 if (${CMAKE_BUILD_TYPE} MATCHES Debug)
@@ -40,7 +42,7 @@ include_directories(
 )
 
 if (${CMAKE_BUILD_TYPE} MATCHES Debug AND ${CMAKE_BUILD_PLATFORM} MATCHES x86)
-    find_package(SDL2 REQUIRED 
+    find_package(SDL2 REQUIRED
         SDL2
     )
     find_package(OpenSSL REQUIRED)

@@ -9,3 +9,6 @@ build_arm/test
 CMakeCache.txt
 CMakeFiles
 src/.cache
+.cache
+demo/index.js
+compile_commands.json

@@ -4,12 +4,16 @@ BUILD_ARM=build_arm
 
 dev-x86:
 	@mkdir -p $(DEV_X86)
+	npm run demo
 	cmake -B "$(DEV_X86)" \
 		-DCMAKE_BUILD_TYPE=Debug \
 		-DCMAKE_BUILD_PLATFORM=x86 \
 		-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@3 \
 		-DOPENSSL_LIBRARIES=/usr/local/opt/openssl@3/lib
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 	cmake --build $(DEV_X86) -j
+	cp dev_x86/compile_commands.json ./compile_commands.json
+
 
 dev-arm:
 	@mkdir -p $(DEV_ARM)
